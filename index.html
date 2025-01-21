@@ -1,0 +1,466 @@
+<!DOCTYPE html>      
+<html lang="en">      
+<head>      
+    <meta charset="UTF-8">      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">      
+    <title>SADES</title>      
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">      
+    <style>      
+        body {      
+            background-image: url('assets/background.jpg'); /* Ganti dengan path gambar Anda */      
+            background-size: cover; /* Mengatur gambar agar menutupi seluruh latar belakang */      
+            background-repeat: no-repeat; /* Menghindari pengulangan gambar */      
+            background-position: center; /* Memusatkan gambar */      
+        }      
+        .navbar {      
+            background: white; /* Mengubah warna navbar menjadi putih */      
+        }      
+        .nav-link {      
+            font-size: 18px; /* Memperbesar ukuran teks */      
+            color: black; /* Warna teks default */      
+            transition: color 0.3s ease; /* Transisi warna saat hover */      
+        }      
+        .nav-link:hover {      
+            color: #016161; /* Warna biru saat hover */      
+        }      
+        .nav-link.active {      
+            color: #016161; /* Warna biru untuk link aktif */      
+        }      
+        .dropdown-menu {      
+            position: absolute;      
+            display: none; /* Menyembunyikan dropdown secara default */      
+            z-index: 1000;      
+        }      
+        .nav-item.dropdown:hover .dropdown-menu {      
+            display: block; /* Menampilkan dropdown saat hover pada item dropdown */      
+        }      
+        .circle-border {      
+            position: relative;      
+            display: inline-block;      
+            padding: 10px 20px;      
+            color: black;      
+            text-decoration: none;      
+            overflow: hidden;      
+            border-radius: 50%; /* Membuat border menjadi lingkaran */      
+            margin: 5px; /* Menambahkan margin untuk jarak antar elemen */      
+        }      
+        .circle-border:before {      
+            content: '';      
+            position: absolute;      
+            top: 50%;      
+            left: 50%;      
+            width: 100%;      
+            height: 100%;      
+            background-color: transparent;      
+            border: 2px solid #016161; /* Warna biru neon */      
+            border-radius: 50%; /* Membuat border menjadi lingkaran */      
+            transform: translate(-50%, -50%);      
+            z-index: -1;      
+            transition: all 0.3s ease; /* Animasi saat hover */      
+        }      
+        .circle-border:hover:before {      
+            transform: translate(-50%, -50%) scale(1.1); /* Efek zoom saat hover */      
+        }      
+        .rounded-border {      
+            border: 5px solid white; /* Border putih */      
+            border-radius: 15px; /* Membuat border rounded */      
+        }      
+        .carousel-title {      
+            font-size: 24px; /* Ukuran font untuk judul */      
+            color: #ffffff; /* Warna putih untuk judul */      
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Bayangan untuk meningkatkan keterbacaan */      
+        }      
+        .carousel-description {      
+            font-size: 18px; /* Ukuran font untuk deskripsi */      
+            color: #ffffff; /* Warna putih untuk deskripsi */      
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Bayangan untuk meningkatkan keterbacaan */      
+        }      
+        .product-description {      
+            display: flex;      
+            align-items: center;      
+            margin: 50px 0;      
+        }      
+        .product-description img {      
+            max-width: 50%; /* Mengatur lebar gambar */      
+            border-radius: 15px; /* Membuat gambar rounded */      
+        }      
+        .description-text {      
+            margin-left: 20px; /* Memberikan jarak antara gambar dan teks */      
+        }      
+        /* Kelas untuk outline teks */  
+        .text-outline {  
+            color: white; /* Warna teks */  
+            text-shadow:   
+                -1px -1px 0 #000,    
+                1px -1px 0 #000,  
+                -1px 1px 0 #000,  
+                1px 1px 0 #000; /* Outline hitam */  
+        }  
+    </style>      
+</head>      
+<body>      
+                      
+<!--navbar-->                
+<section>                
+    <nav class="navbar navbar-expand-lg" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background-color: white;">                
+        <div class="container-fluid">                
+            <a class="navbar-brand" href="index.html" style="color: black;">                
+                <img src="assets/sades-seeklogo.svg" alt="" width="80" height="80">                
+            </a>                
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">                
+                <span class="navbar-toggler-icon"></span>                
+            </button>                
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">                
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">                                        
+                    <li class="nav-item dropdown">                
+                        <a class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false">                
+                            Our Product                
+                        </a>                
+                        <ul class="dropdown-menu">                
+                            <li>  
+                                <a class="dropdown-item" href="mousepad.html">  
+                                    <div class="dropdown-image-container">  
+                                        <img src="assets/mousepad.png" alt="Image 1">  
+                                        <span class="image-text">Mousepad</span>  
+                                    </div>  
+                                </a>  
+                            </li>  
+                            <li>  
+                                <a class="dropdown-item" href="mouse.html">  
+                                    <div class="dropdown-image-container">  
+                                        <img src="assets/mouse.png" alt="Image 2">  
+                                        <span class="image-text">Mouse</span>  
+                                    </div>  
+                                </a>  
+                            </li>  
+                            <li>  
+                                <a class="dropdown-item" href="keyboard.html">  
+                                    <div class="dropdown-image-container">  
+                                        <img src="assets/keyboard.png" alt="Image 3">  
+                                        <span class="image-text">Keyboard</span>  
+                                    </div>  
+                                </a>
+                                <li>  
+                                    <a class="dropdown-item" href="headset.html">  
+                                        <div class="dropdown-image-container">  
+                                            <img src="assets/headset.png" alt="Image 3">  
+                                            <span class="image-text">Headset</span>  
+                                        </div>  
+                                    </a>  
+                            </li>  
+                        </ul>                
+                    </li>                  
+                </ul>                
+            </div>                
+        </div>                
+        <div style="background-color: #ADD8E6; height: 5px;"></div> <!-- Aksen Biru Pucat -->                
+    </nav>    
+      
+    <style>    
+        body {    
+            padding-top: 70px; /* Memberikan ruang di atas konten agar tidak tertutup navbar */    
+        }    
+  
+        .dropdown-menu {  
+            display: none; /* Menyembunyikan dropdown secara default */  
+            flex-direction: row; /* Mengatur dropdown menjadi baris */  
+            position: absolute; /* Mengatur posisi dropdown */  
+            z-index: 1000; /* Menempatkan dropdown di atas elemen lain */  
+            background-color: white; /* Warna latar belakang dropdown */  
+            padding: 10px; /* Ruang di dalam dropdown */  
+            border: 1px solid #ccc; /* Garis batas dropdown */  
+            border-radius: 5px; /* Sudut melengkung */  
+        }  
+  
+        .nav-item.dropdown:hover .dropdown-menu {  
+            display: flex; /* Menampilkan dropdown saat hover */  
+        }  
+  
+        .dropdown-image-container {  
+            position: relative;  
+            width: 100px; /* Ukuran kotak gambar */  
+            height: 100px; /* Ukuran kotak gambar */  
+            overflow: hidden;  
+            margin: 0 10px; /* Jarak antar item */  
+        }  
+  
+        .dropdown-image-container img {  
+            width: 100%;  
+            height: 100%;  
+            object-fit: cover; /* Memastikan gambar tetap dalam kotak */  
+            transition: transform 0.3s ease, filter 0.3s ease; /* Transisi untuk efek hover */  
+        }  
+  
+        .dropdown-image-container:hover img {  
+            transform: scale(1.1); /* Zoom in saat hover */  
+            filter: brightness(0.8); /* Efek kilapan cermin */  
+        }  
+  
+        .image-text {  
+            position: absolute;  
+            top: 50%;  
+            left: 50%;  
+            transform: translate(-50%, -50%);  
+            color: white; /* Warna teks */  
+            font-weight: bold; /* Menebalkan teks */  
+            text-align: center; /* Menyelaraskan teks di tengah */  
+            z-index: 1; /* Menempatkan teks di atas gambar */  
+        }  
+    </style>  
+</section>                
+<!--end nav-->     
+    
+ 
+  
+  
+          
+   
+        
+  
+  
+      
+  <br><br><br><br><br>    
+<!--carousel-->              
+<section>                    
+    <div class="container-sm">                  
+        <div id="carouselExampleDark" class="carousel carousel-light slide" data-bs-ride="carousel" data-bs-interval="5000">                    
+            <div class="carousel-indicators">                    
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>                    
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>                    
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>                  
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>                    
+            </div>                    
+            <div class="carousel-inner">                    
+                <div class="carousel-item active" data-bs-interval="5000">                    
+                    <img src="assets/slider.jpg" class="d-block w-75 mx-auto rounded-border" alt="...">                    
+                    <div class="carousel-caption position-absolute bottom-0 start-50 translate-middle-x p-3 text-center">                    
+                        <h5 class="carousel-title">Mousepad</h5>                    
+                        <p class="carousel-description">SADES menyediakan Berbagai jenis mousepad untuk para Gamers</p>                   
+                    </div>                    
+                </div>                    
+                <div class="carousel-item" data-bs-interval="5000">                    
+                    <img src="assets/slider1.jpg" class="d-block w-75 mx-auto rounded-border" alt="...">                    
+                    <div class="carousel-caption position-absolute bottom-0 start-50 translate-middle-x p-3 text-center">                    
+                        <h5 class="carousel-title">Keyboard</h5>                 
+                        <p class="carousel-description">Keyboard SADES di desain sepenuh hati oleh Gamer untuk Gamer</p>                    
+                    </div>                    
+                </div>                    
+                <div class="carousel-item" data-bs-interval="5000">                    
+                    <img src="assets/slider2.jpg" class="d-block w-75 mx-auto rounded-border" alt="...">                    
+                    <div class="carousel-caption position-absolute bottom-0 start-50 translate-middle-x p-3 text-center">                    
+                        <h5 class="carousel-title">Gaming Mouse</h5>                
+                        <p class="carousel-description">Mouse kami memiliki spesifikasi tingkat Tournament.</p>                 
+                    </div>                    
+                </div>                  
+                <div class="carousel-item" data-bs-interval="5000">                    
+                    <img src="assets/slider3.jpg" class="d-block w-75 mx-auto rounded-border" alt="...">                    
+                    <div class="carousel-caption position-absolute bottom-0 start-50 translate-middle-x p-3 text-center">                    
+                        <h5 class="carousel-title">Headphones</h5>                  
+                        <p class="carousel-description">Headphones dengan teknologi High Definition.</p>                  
+                    </div>                    
+                </div>                    
+            </div>                    
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">                    
+                <span class="carousel-control-prev-icon shadow-icon" aria-hidden="true" style="font-size: 1.5rem;"></span>                    
+                <span class="visually-hidden">Previous</span>                    
+            </button>                    
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">                    
+                <span class="carousel-control-next-icon shadow-icon" aria-hidden="true" style="font-size: 1.5rem;"></span>                    
+                <span class="visually-hidden">Next</span>                    
+            </button>                    
+        </div>                    
+    </div>                  
+</section> 
+
+<style>  
+    .shadow-icon {  
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Menambahkan bayangan */  
+        border-radius: 50%; /* Membuat sudut ikon menjadi bulat */  
+    }  
+</style>
+<!--end of carousel-->    
+  <br><br><br><br>
+
+  <!--Header Img-->        
+<section>          
+    <div class="container-lg text-center">          
+        <h1 class="text-outline">SADES</h1>        
+        <p class="text-outline">        
+            <span class="text-large"> <!-- Mengganti <font> dengan <span> untuk penggunaan CSS yang lebih baik -->  
+                SADES adalah merek yang dikenal luas dalam industri perangkat keras gaming, menawarkan berbagai produk berkualitas tinggi yang dirancang khusus untuk memenuhi kebutuhan para gamer. <br>
+Dengan fokus pada inovasi dan kepuasan pelanggan, SADES terus menjadi pilihan utama bagi para gamer di seluruh dunia yang mencari perangkat keras berkualitas untuk meningkatkan pengalaman bermain mereka.     
+            </span>     
+        </p>         
+    </div>  
+    
+    <style>  
+        .text-large {  
+            font-size: 1.2rem; /* Ukuran font yang lebih besar, sesuaikan sesuai kebutuhan */  
+            color: white; /* Warna teks, sesuaikan jika perlu */  
+        }  
+    </style>
+</section>        
+<!--end header img-->
+  
+      
+        
+  <br><br><br><br><br>    
+<!--card-->        
+<section>        
+    <div class="container">        
+        <div class="row row-cols-1 row-cols-md-2 g-4">        
+            <div class="col">        
+                <a href="mousepad.html" class="card"> <!-- Ganti dengan link yang sesuai -->  
+                    <img src="assets/mousepad.png" class="card-img-top zoom" alt="...">        
+                    <div class="card-body">        
+                        <h5 class="card-title" align="center">Mousepad</h5>        
+                                
+                    </div>        
+                </a>        
+            </div>        
+            <div class="col">        
+                <a href="keyboard.html" class="card"> <!-- Ganti dengan link yang sesuai -->  
+                    <img src="assets/keyboard.png" class="card-img-top zoom" alt="...">        
+                    <div class="card-body">        
+                        <h5 class="card-title" align="center">Keyboard</h5>        
+                                
+                    </div>        
+                </a>        
+            </div>        
+            <div class="col">        
+                <a href="mouse.html" class="card"> <!-- Ganti dengan link yang sesuai -->  
+                    <img src="assets/mouse.png" class="card-img-top zoom" alt="...">        
+                    <div class="card-body">        
+                        <h5 class="card-title" align="center">Mouse</h5>        
+                                
+                    </div>        
+                </a>        
+            </div>        
+            <div class="col">        
+                <a href="headset.html" class="card"> <!-- Ganti dengan link yang sesuai -->  
+                    <img src="assets/headset.png" class="card-img-top zoom" alt="...">        
+                    <div class="card-body">        
+                        <h5 class="card-title" align="center">Headset</h5>        
+                                
+                    </div>        
+                </a>        
+            </div>        
+        </div>        
+    </div>  
+    
+    <style>  
+        .card {  
+            text-decoration: none; /* Menghilangkan garis bawah pada link */  
+            color: inherit; /* Menggunakan warna teks yang sama dengan warna default */  
+        }  
+      
+        .zoom {  
+            transition: transform 0.3s ease; /* Transisi untuk efek zoom */  
+        }  
+      
+        .zoom:hover {  
+            transform: scale(0.95); /* Zoom out saat hover */  
+        }  
+    </style>
+</section>        
+<!--End of card-->        
+  
+  
+      
+  <br><br><br><br><br>    
+<!--content-->      
+<div class="container">        
+    <h1 class="text-center mb-4">Dari Gamers untuk Gamers</h1>        
+    <div class="product-description">        
+        <img src="assets/teardown.jpeg" alt="Produk SADES" width="300" height="300">    
+        <div class="description-text">           
+            <p>        
+                Produk SADES dirancang khusus untuk memenuhi kebutuhan para gamers. Setiap produk kami dibuat dengan teknologi terkini dan bahan berkualitas tinggi untuk memberikan pengalaman bermain yang optimal.         
+            </p>        
+            <p>        
+                Kami memahami bahwa kenyamanan dan performa adalah kunci dalam permainan. Oleh karena itu, setiap detail dari produk kami, mulai dari desain ergonomis hingga responsivitas, diperhatikan dengan seksama.         
+            </p>        
+            <p>        
+                Dengan kolaborasi bersama gamer profesional, kami terus berinovasi untuk menciptakan produk yang tidak hanya menarik secara visual, tetapi juga fungsional dan tahan lama.         
+            </p>        
+        </div>        
+    </div>        
+</div>      
+<!--end of content-->      
+  <br><br><br><br><br>    
+<!-- Footer Section -->  
+<section style="background-color: white; padding: 40px 0; text-align: center;">  
+    <div class="container">  
+        <div style="margin-bottom: 20px;">  
+            <h4 style="margin: 0; color: black;">From Gamers For Gamers</h4>  
+            <p style="color: gray;">ENJOY YOUR GAME LIKE IT'S YOUR OWN LIFE</p>  
+        </div>  
+        <br><br>  
+        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; margin-bottom: 20px;">  
+            <div style="flex: 1; min-width: 200px; margin: 10px;">  
+                <h5 style="color: black;">Support</h5>  
+                <p style="margin: 5px 0; color: gray;">FAQs</p>  
+                <p style="margin: 5px 0; color: gray;">Warranty</p>  
+                <p style="margin: 5px 0; color: gray;">Returns</p>  
+            </div>  
+            <br><br><br>  
+            <div style="flex: 1; min-width: 200px; margin: 10px;">  
+                <h5 style="color: black;">Contact</h5>  
+                <p style="margin: 5px 0; color: gray;">SADES@example.com</p>  
+                <p style="margin: 5px 0; color: gray;">+1 (234) 567-890</p>  
+            </div>  
+            <div style="flex: 1; min-width: 200px; margin: 10px;"> 
+                <form action=""> 
+                <h5 style="color: black;">Stay Updated</h5>  
+                <input type="email" id="subscribeEmail" placeholder="Enter your email" style="padding: 5px; width: 200px;" />  
+                <button id="subscribeButton" style="padding: 5px 10px; margin-left: 5px;">Subscribe</button>  
+            </form>
+            </div>  
+        </div>  
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#locationModal">  
+            Alamat Kita  
+        </button>  
+        <div style="margin-top: 20px; color: gray;">  
+            <img src="assets/sades-seeklogo.svg" alt="" width="100" height="100">  
+            <p>&copy; 2025 SADES. All rights reserved.</p>  
+        </div>  
+    </div>  
+</section>  
+  
+<!-- Loc Modal -->  
+<div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">  
+    <div class="modal-dialog modal-lg">  
+        <div class="modal-content">  
+            <div class="modal-header">  
+                <h5 class="modal-title" id="locationModalLabel">Our Location</h5>  
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>  
+            </div>  
+            <div class="modal-body">  
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d991.733393507335!2d106.83031437929765!3d-6.139626120021153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5ff34902ce5%3A0x3a44e1a2b6cdfd41!2sIndigital!5e0!3m2!1sen!2sid!4v1737186879385!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>  
+            </div>  
+            <div class="modal-footer">  
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>  
+            </div>  
+        </div>  
+    </div>  
+</div>  
+          
+      
+<!--Script-->      
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>      
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>        
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>        
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
+<script>  
+    document.getElementById('subscribeButton').addEventListener('click', function() {  
+        var email = document.getElementById('subscribeEmail').value;  
+        if (email) {  
+            alert('Thank you for subscribing! Check your email for updates.');  
+            document.getElementById('subscribeEmail').value = ''; // Clear the input field  
+        } else {  
+            alert('Please enter a valid email address.');  
+        }  
+    });  
+</script>    
+</body>      
+</html>      
